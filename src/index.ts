@@ -1,12 +1,14 @@
+
 function regexEllenoriz(szoveg: string, regex: RegExp): boolean{
     let helyes = false;
     helyes = regex.test(szoveg);
+    console.log(helyes)
     return helyes;
 };
 
 document.getElementById('fizetesBtn')!.addEventListener('click', () => {
-    let name_country_city_Pattern = /^[\p{L} ]+$/;
-    let streetHousePattern = /^[\p{L}0-9 -]+$/;
+    let name_country_city_Pattern = /^[\p{L} ]+$/u;
+    let streetHousePattern = /^[\p{L}0-9 -]+$/u;
     let postCodePattern = /^[A-Z0-9]+$/;
     let cardNumberPattern = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/;
     let authNumberPattern = /^[0-9]{3}$/;
@@ -27,12 +29,12 @@ document.getElementById('fizetesBtn')!.addEventListener('click', () => {
     console.log(list);
 
     if (vanHiba){
-        document.getElementById('hibaMegjelenites')!.textContent = "hiba"
+        document.getElementById('hibaMegjelenites')!.textContent = "Ellenőrizd a megadott adatokat, valamelyik hibás!"
     }else {
         document.body.innerHTML = "";
         let sikerMegjelenit = document.createElement('div');
         sikerMegjelenit.classList.add('sikerMegjelenit');
-        sikerMegjelenit.textContent = "siker";
+        sikerMegjelenit.textContent = "Adatok sikeresen hitelesítve!";
         document.body.appendChild(sikerMegjelenit);
     }
 });
